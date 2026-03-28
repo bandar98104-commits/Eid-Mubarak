@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بطاقة عيد الفطر | نادي الروبوت والرياضات</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Cairo", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 18%),
+        radial-gradient(circle at bottom left, rgba(255,255,255,0.06), transparent 20%),
+        linear-gradient(135deg, #140028 0%, #2b0b65 45%, #3b00ff 100%);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .page {
+      width: min(92%, 820px);
+      margin: 0 auto;
+      padding: 30px 0 55px;
+    }
+
+    .top-badge {
+      display: inline-block;
+      margin: 0 auto 16px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      color: #f6efff;
+      font-size: 14px;
+    }
+
+    .hero {
+      text-align: center;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 28px;
+      padding: 28px 22px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+      backdrop-filter: blur(12px);
+      margin-bottom: 26px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-family: "Amiri", serif;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.2;
+      color: #ffffff;
+      text-shadow: 0 0 16px rgba(255,255,255,0.12);
+    }
+
+    .hero p {
+      margin: 0;
+      line-height: 2;
+      color: #efe7ff;
+      font-size: 16px;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+      backdrop-filter: blur(12px);
+    }
+
+    .field-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 15px;
+      color: #ffffff;
+      text-align: right;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: none;
+      outline: none;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.95);
+      color: #222;
+      padding: 16px;
+      font-family: "Cairo", sans-serif;
+      font-size: 17px;
+      margin-bottom: 16px;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #888;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+      line-height: 1.9;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 18px;
+      padding: 14px 24px;
+      font-family: "Cairo", sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ffffff 0%, #e8d9ff 100%);
+      color: #24004d;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, #ffd86f 0%, #ffb347 100%);
+      color: #2b1841;
+      display: none;
+    }
+
+    .preview-wrap {
+      margin-top: 28px;
+      text-align: center;
+    }
+
+    canvas {
+      display: none;
+      width: 100%;
+      max-width: 560px;
+      border-radius: 24px;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.28);
+      background: transparent;
+    }
+
+    .note {
+      text-align: center;
+      color: rgba(255,255,255,0.8);
+      margin-top: 14px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 640px) {
+      .hero, .panel {
+        border-radius: 22px;
+        padding: 20px 16px;
+      }
+
+      input, textarea {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+    <div style="text-align:center;">
+      <div class="top-badge">نادي الروبوت والرياضات ✨ بطاقة عيد فاخرة</div>
+    </div>
+
+    <section class="hero">
+      <h1>اصنع بطاقة عيدك الخاصة</h1>
+      <p>
+        اكتب اسمك، وأضف تهنئة العيد أو الدعاء الذي تريده، ثم أصدر بطاقتك
+        بتصميم أنيق وفخم مستوحى من ألوان وهوية نادي الروبوت والرياضات.
+      </p>
+    </section>
+
+    <section class="panel">
+      <label class="field-label" for="name">الاسم</label>
+      <input id="name" type="text" placeholder="اكتب اسمك هنا">
+
+      <label class="field-label" for="message">تهنئة العيد / الدعاء</label>
+      <textarea id="message" placeholder="اكتب تهنئتك أو الدعاء هنا"></textarea>
+
+      <div class="actions">
+        <button class="btn btn-primary" onclick="generateCard()">إصدار البطاقة</button>
+        <button class="btn btn-download" id="downloadBtn" onclick="downloadCard()">تحميل البطاقة</button>
+      </div>
+
+      <div class="preview-wrap">
+        <canvas id="cardCanvas" width="1080" height="1080"></canvas>
+      </div>
+
+      <div class="note">بعد إصدار البطاقة تقدر تحملها مباشرة بصيغة PNG.</div>
+    </section>
+  </div>
+
+  <script>
+    function roundRect(ctx, x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+    }
+
+    function drawFittedText(ctx, text, x, startY, maxWidth, maxHeight) {
+      let fontSize = 48;
+      ctx.textAlign = "center";
+      ctx.fillStyle = "white";
+
+      while (fontSize > 20) {
+        ctx.font = fontSize + 'px "Amiri", serif';
+
+        const words = text.split(" ");
+        let line = "";
+        const lines = [];
+
+        for (let i = 0; i < words.length; i++) {
+          const testLine = line + words[i] + " ";
+          const metrics = ctx.measureText(testLine);
+
+          if (metrics.width > maxWidth && i > 0) {
+            lines.push(line);
+            line = words[i] + " ";
+          } else {
+            line = testLine;
+          }
+        }
+
+        lines.push(line);
+
+        const lineHeight = fontSize + 12;
+        const totalHeight = lines.length * lineHeight;
+
+        if (totalHeight <= maxHeight) {
+          for (let j = 0; j < lines.length; j++) {
+            ctx.fillText(lines[j], x, startY + j * lineHeight);
+          }
+          return;
+        }
+
+        fontSize -= 2;
+      }
+    }
+
+    function generateCard() {
+      const name = document.getElementById("name").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      const canvas = document.getElementById("cardCanvas");
+      const ctx = canvas.getContext("2d");
+
+      canvas.style.display = "block";
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // خلفية بألوان هوية النادي
+      const gradient = ctx.createLinearGradient(0, 0, 1080, 1080);
+      gradient.addColorStop(0, "#120028");
+      gradient.addColorStop(0.45, "#3b0e7a");
+      gradient.addColorStop(1, "#3b00ff");
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // لمعات علوية
+      const glow1 = ctx.createRadialGradient(250, 140, 20, 250, 140, 280);
+      glow1.addColorStop(0, "rgba(255,255,255,0.18)");
+      glow1.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = glow1;
+      ctx.fillRect(0, 0, 1080, 1080);
+
+      const glow2 = ctx.createRadialGradient(860, 240, 10, 860, 240, 240);
+      glow2.addColorStop(0, "rgba(255,255,255,0.12)");
+      glow2.addColorStop(1, "rgba(255,255,255,0)");
+      ctx.fillStyle = glow2;
+      ctx.fillRect(0, 0, 1080, 1080);
+
+      // نجوم بسيطة
+      for (let i = 0; i < 35; i++) {
+        const x = Math.random() * 1080;
+        const y = Math.random() * 1080;
+        const size = Math.random() * 3 + 1;
+        ctx.fillStyle = "rgba(255,255,255,0.35)";
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // عنوان أعلى البطاقة
+      ctx.textAlign = "center";
+      ctx.fillStyle = "white";
+      ctx.shadowColor = "rgba(255,255,255,0.18)";
+      ctx.shadowBlur = 12;
+      ctx.font = 'bold 84px "Amiri", serif';
+      ctx.fillText("عيدكم مبارك", 540, 155);
+
+      // الاسم
+      ctx.font = 'bold 58px "Amiri", serif';
+      ctx.fillText(name || "اسمك هنا", 540, 285);
+
+      // مستطيل زجاجي في الوسط
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "rgba(255,255,255,0.15)";
+      roundRect(ctx, 170, 350, 740, 330, 28);
+      ctx.fill();
+
+      // إطار المستطيل
+      ctx.strokeStyle = "rgba(255,255,255,0.20)";
+      ctx.lineWidth = 2;
+      roundRect(ctx, 170, 350, 740, 330, 28);
+      ctx.stroke();
+
+      // نص التهنئة/الدعاء
+      drawFittedText(
+        ctx,
+        message || "تقبل الله منا ومنكم، وجعل عيدكم فرحًا وسعادة وبركة.",
+        540,
+        440,
+        610,
+        220
+      );
+
+      // شريط سفلي
+      ctx.fillStyle = "rgba(255,255,255,0.10)";
+      roundRect(ctx, 100, 875, 880, 80, 24);
+      ctx.fill();
+
+      ctx.fillStyle = "white";
+      ctx.font = 'bold 34px "Amiri", serif';
+      ctx.fillText("نادي الروبوت والرياضات", 540, 925);
+
+      document.getElementById("downloadBtn").style.display = "inline-block";
+    }
+
+    function downloadCard() {
+      const canvas = document.getElementById("cardCanvas");
+      const link = document.createElement("a");
+      link.download = "eid-card.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }
+  </script>
+
+</body>
+</html>
